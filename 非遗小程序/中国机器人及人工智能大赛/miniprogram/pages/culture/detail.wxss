@@ -1,0 +1,133 @@
+/* culture/detail.wxss - 文化资源详情样式 */
+
+.container {
+  background-color: #f8f8f8;
+  min-height: 100vh;
+  padding-bottom: 40rpx;
+}
+
+/* 资源图片 */
+.resource-image {
+  width: 100%;
+  height: 400rpx;
+  background-color: #eee;
+}
+
+/* 资源信息 */
+.resource-info {
+  padding: 30rpx;
+  background-color: #fff;
+  margin-top: 20rpx;
+  border-radius: 16rpx;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.05);
+}
+
+/* 资源标题 */
+.resource-title {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #333;
+  display: block;
+  margin-bottom: 16rpx;
+}
+
+/* 资源元信息 */
+.resource-meta {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30rpx;
+  padding-bottom: 20rpx;
+  border-bottom: 1rpx solid #eee;
+}
+
+.resource-type {
+  font-size: 24rpx;
+  color: #8B4513; /* 棕色 - 代表传统文化 */
+  background-color: #f5e8d8;
+  padding: 8rpx 16rpx;
+  border-radius: 20rpx;
+}
+
+.resource-views {
+  font-size: 24rpx;
+  color: #999;
+}
+
+/* 章节样式 */
+.section {
+  margin-bottom: 30rpx;
+}
+
+.section-title {
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #333;
+  display: block;
+  margin-bottom: 16rpx;
+  padding-left: 12rpx;
+  border-left: 4rpx solid #8B4513;
+}
+
+/* 文本内容 */
+.resource-desc,
+.resource-background,
+.resource-history,
+.resource-features,
+.resource-value {
+  font-size: 26rpx;
+  color: #666;
+  line-height: 1.6;
+  text-align: justify;
+}
+
+/* 操作按钮 */
+.action-buttons {
+  display: flex;
+  gap: 20rpx;
+  margin-top: 40rpx;
+}
+
+.btn {
+  flex: 1;
+  height: 80rpx;
+  border-radius: 12rpx;
+  font-size: 28rpx;
+  font-weight: bold;
+}
+
+.btn-primary {
+  background-color: #8B4513;
+  color: #fff;
+}
+
+.btn-secondary {
+  background-color: #fff;
+  color: #8B4513;
+  border: 2rpx solid #8B4513;
+}
+
+/* 加载动画 */
+.loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60rpx;
+}
+
+.loading-text {
+  font-size: 24rpx;
+  color: #999;
+  margin-top: 20rpx;
+}
+
+/* 适配不同屏幕 */
+@media (min-width: 768px) {
+  .resource-image {
+    height: 500rpx;
+  }
+  
+  .resource-info {
+    padding: 40rpx;
+  }
+}

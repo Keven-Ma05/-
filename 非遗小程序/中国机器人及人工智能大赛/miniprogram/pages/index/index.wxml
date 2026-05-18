@@ -1,0 +1,102 @@
+<!-- index.wxml - 首页 -->
+<view class="container">
+  <!-- 顶部轮播图 -->
+  <swiper class="banner" indicator-dots="true" autoplay="true" interval="5000" duration="1000">
+    <swiper-item>
+      <image src="https://picsum.photos/1200/400?random=1" mode="aspectFill" class="banner-image"></image>
+    </swiper-item>
+    <swiper-item>
+      <image src="https://picsum.photos/1200/400?random=2" mode="aspectFill" class="banner-image"></image>
+    </swiper-item>
+    <swiper-item>
+      <image src="https://picsum.photos/1200/400?random=3" mode="aspectFill" class="banner-image"></image>
+    </swiper-item>
+  </swiper>
+
+  <!-- 功能入口 -->
+  <view class="card">
+    <text class="title">核心功能</text>
+    <view class="grid">
+      <navigator url="/pages/create/create?type=text2img" class="function-item">
+        <view class="function-icon">✍️</view>
+        <text class="function-text">AI文生图</text>
+      </navigator>
+      <navigator url="/pages/create/create?type=img2img" class="function-item">
+        <view class="function-icon">🎨</view>
+        <text class="function-text">AI图生图</text>
+      </navigator>
+      <navigator url="/pages/recombiner/recombiner" class="function-item function-highlight">
+        <view class="function-icon">🧬</view>
+        <text class="function-text">基因重组</text>
+      </navigator>
+      <navigator url="/pages/culture/culture" class="function-item">
+        <view class="function-icon">📚</view>
+        <text class="function-text">文化资源库</text>
+      </navigator>
+      <navigator url="/pages/community/community" class="function-item">
+        <view class="function-icon">👥</view>
+        <text class="function-text">创作者社区</text>
+      </navigator>
+    </view>
+  </view>
+
+  <!-- 热门创作 -->
+  <view class="card">
+    <view class="section-header">
+      <text class="title">热门创作</text>
+      <navigator url="/pages/community/community?tab=hot" class="more">查看更多</navigator>
+    </view>
+    <scroll-view scroll-x="true" class="hot-works" enable-flex="true">
+      <view class="work-item" wx:for="{{hotWorks}}" wx:key="id">
+        <image src="{{item.image}}" mode="aspectFill" class="work-image"></image>
+        <view class="work-info">
+          <text class="work-title">{{item.title}}</text>
+          <text class="work-author">{{item.author}}</text>
+          <view class="work-stats">
+            <text class="stat-item">❤️ {{item.likes}}</text>
+            <text class="stat-item">💬 {{item.comments}}</text>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+
+  <!-- 文化推荐 -->
+  <view class="card">
+    <view class="section-header">
+      <text class="title">文化推荐</text>
+      <navigator url="/pages/culture/culture" class="more">查看更多</navigator>
+    </view>
+    <view class="culture-list">
+      <view class="culture-item" wx:for="{{recommendedCulture}}" wx:key="id">
+        <image src="{{item.image}}" mode="aspectFill" class="culture-image"></image>
+        <view class="culture-content">
+          <text class="culture-title">{{item.title}}</text>
+          <text class="culture-desc">{{item.description}}</text>
+          <view class="culture-tags">
+            <text class="tag" wx:for="{{item.tags}}" wx:key="*this">{{item}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 创作挑战 -->
+  <view class="card chinese-border">
+    <view class="challenge-header">
+      <view class="challenge-icon">🏆</view>
+      <view class="challenge-info">
+        <text class="challenge-title">月度创作挑战</text>
+        <text class="challenge-subtitle">传统节日主题创作</text>
+      </view>
+    </view>
+    <view class="challenge-details">
+      <text class="challenge-desc">参与月度创作挑战，赢取丰厚奖品和展示机会！</text>
+      <view class="challenge-stats">
+        <text class="stat">参与人数：{{challengeStats.participants}}人</text>
+        <text class="stat">剩余时间：{{challengeStats.daysLeft}}天</text>
+      </view>
+      <navigator url="/pages/community/community?tab=challenge" class="btn btn-primary join-btn">立即参与</navigator>
+    </view>
+  </view>
+</view>

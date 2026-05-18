@@ -1,0 +1,144 @@
+/* culture.wxss - 文化资源库样式 */
+
+/* 搜索栏 */
+.search-bar {
+  display: flex;
+  align-items: center;
+  background-color: #FFFFFF;
+  border-radius: 12rpx;
+  padding: 0 20rpx;
+  margin-bottom: 20rpx;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.08);
+}
+
+.search-input {
+  flex: 1;
+  padding: 20rpx 0;
+  font-size: 28rpx;
+  color: var(--text-color);
+}
+
+.search-btn {
+  font-size: 32rpx;
+  color: var(--light-text);
+  padding: 10rpx;
+}
+
+/* 分类导航 */
+.category-nav {
+  display: flex;
+  padding: 10rpx 0;
+  margin-bottom: 20rpx;
+  white-space: nowrap;
+  background-color: #FFFFFF;
+  border-radius: 12rpx;
+  padding: 10rpx;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.08);
+}
+
+.category-item {
+  display: inline-block;
+  padding: 12rpx 24rpx;
+  margin-right: 16rpx;
+  font-size: 26rpx;
+  color: var(--text-color);
+  background-color: rgba(139, 69, 19, 0.05);
+  border-radius: 20rpx;
+  transition: all 0.3s ease;
+}
+
+.category-item.active {
+  background-color: var(--primary-color);
+  color: #FFFFFF;
+}
+
+/* 资源列表 */
+.resource-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+}
+
+.resource-item {
+  display: flex;
+  background-color: #FFFFFF;
+  border-radius: 16rpx;
+  overflow: hidden;
+  box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease;
+}
+
+.resource-item:active {
+  transform: scale(0.98);
+}
+
+.resource-image {
+  width: 240rpx;
+  height: 180rpx;
+  flex-shrink: 0;
+}
+
+.resource-content {
+  flex: 1;
+  padding: 20rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.resource-title {
+  font-size: 32rpx;
+  font-weight: 500;
+  color: var(--text-color);
+  margin-bottom: 12rpx;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.resource-desc {
+  font-size: 24rpx;
+  color: var(--light-text);
+  margin-bottom: 16rpx;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  line-height: 1.5;
+}
+
+.resource-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.resource-type {
+  font-size: 22rpx;
+  padding: 4rpx 12rpx;
+  background-color: rgba(139, 69, 19, 0.1);
+  color: var(--primary-color);
+  border-radius: 12rpx;
+}
+
+.resource-views {
+  font-size: 22rpx;
+  color: var(--light-text);
+}
+
+/* 响应式调整 */
+@media (max-width: 375px) {
+  .resource-image {
+    width: 200rpx;
+    height: 150rpx;
+  }
+  
+  .resource-title {
+    font-size: 28rpx;
+  }
+  
+  .resource-desc {
+    font-size: 22rpx;
+  }
+}

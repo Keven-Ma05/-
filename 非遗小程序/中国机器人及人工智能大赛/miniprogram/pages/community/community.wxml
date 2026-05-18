@@ -1,0 +1,94 @@
+<!-- community.wxml - 创作者社区 -->
+<view class="container">
+  <!-- 社区标签切换 -->
+  <view class="community-tabs">
+    <view class="tab-item {{currentTab === 'hot' ? 'active' : ''}}" bindtap="switchTab" data-tab="hot">
+      热门
+    </view>
+    <view class="tab-item {{currentTab === 'latest' ? 'active' : ''}}" bindtap="switchTab" data-tab="latest">
+      最新
+    </view>
+    <view class="tab-item {{currentTab === 'following' ? 'active' : ''}}" bindtap="switchTab" data-tab="following">
+      关注
+    </view>
+    <view class="tab-item {{currentTab === 'challenge' ? 'active' : ''}}" bindtap="switchTab" data-tab="challenge">
+      挑战
+    </view>
+  </view>
+
+  <!-- 作品列表 -->
+  <view class="works-list">
+    <view class="work-item" wx:for="{{works}}" wx:key="id">
+      <!-- 作者信息 -->
+      <view class="author-info">
+        <image src="{{item.author.avatar}}" mode="aspectFill" class="author-avatar"></image>
+        <view class="author-details">
+          <text class="author-name">{{item.author.name}}</text>
+          <text class="post-time">{{item.postTime}}</text>
+        </view>
+        <button class="follow-btn" wx:if="{{!item.author.following}}" bindtap="followAuthor" data-author-id="{{item.author.id}}">
+          关注
+        </button>
+        <button class="following-btn" wx:else bindtap="unfollowAuthor" data-author-id="{{item.author.id}}">
+          已关注
+        </button>
+      </view>
+
+      <!-- 作品内容 -->
+      <view class="work-content">
+        <image src="{{item.image}}" mode="aspectFill" class="work-image"></image>
+        <view class="work-info">
+          <text class="work-title">{{item.title}}</text>
+          <text class="work-description">{{item.description}}</text>
+          <view class="work-tags">
+            <text class="tag" wx:for="{{item.tags}}" wx:key="*this">{{item}}</text>
+          </view>
+        </view>
+      </view>
+
+      <!-- 作品操作 -->
+      <view class="work-actions">
+        <view class="action-item {{item.liked ? 'active' : ''}}" bindtap="likeWork" data-work-id="{{item.id}}">
+          <text class="action-icon">❤️</text>
+          <text class="action-count">{{item.likes}}</text>
+        </view>
+        <view class="action-item" bindtap="commentWork" data-work-id="{{item.id}}">
+          <text class="action-icon">💬</text>
+          <text class="action-count">{{item.comments}}</text>
+        </view>
+        <view class="action-item" bindtap="shareWork" data-work-id="{{item.id}}">
+          <text class="action-icon">📤</text>
+          <text class="action-count">分享</text>
+        </view>
+      </view>
+
+      <!-- 评论预览 -->
+      <view class="comments-preview" wx:if="{{item.comments > 0}}">
+        <text class="comments-hint">查看全部{{item.comments}}条评论</text>
+        <view class="comment-item" wx:for="{{item.previewComments}}" wx:for-item="comment" wx:key="id">
+          <text class="comment-author">{{comment.author}}:</text>
+          <text class="comment-content">{{comment.content}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 空状态 -->
+  <view class="empty" wx:if="{{works.length === 0 && !loading}}">
+    <view class="empty-icon">👥</view>
+    <text class="empty-text">暂无作品</text>
+  </view>
+
+  <!-- 加载动画 -->
+  <view class="loading" wx:if="{{loading}}">
+    <loading></loading>
+    <text class="loading-text">加载中...</text>
+  </view>
+
+  <!-- 发布按钮 -->
+  <view class="publish-btn-container">
+    <navigator url="/pages/create/create" class="publish-btn">
+      🎨
+    </navigator>
+  </view>
+</view>

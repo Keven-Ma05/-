@@ -1,0 +1,111 @@
+<!-- create.wxml - AI创作页面 -->
+<view class="container">
+  <!-- 创作模式切换 -->
+  <view class="mode-tabs">
+    <view class="tab-item {{createMode === 'text2img' ? 'active' : ''}}" bindtap="switchMode" data-mode="text2img">
+      ✍️ 文生图
+    </view>
+    <view class="tab-item {{createMode === 'img2img' ? 'active' : ''}}" bindtap="switchMode" data-mode="img2img">
+      🎨 图生图
+    </view>
+  </view>
+
+  <!-- 文生图模式 -->
+  <view class="create-panel" wx:if="{{createMode === 'text2img'}}">
+    <!-- 描述输入 -->
+    <view class="section">
+      <text class="section-title">创作描述</text>
+      <textarea class="desc-input" placeholder="请描述您想要创作的内容，例如：一幅中国传统水墨画，描绘山水风景..." value="{{textPrompt}}" bindinput="onTextInput"></textarea>
+    </view>
+
+    <!-- 艺术风格 -->
+    <view class="section">
+      <text class="section-title">选择风格</text>
+      <scroll-view scroll-x="true" class="style-scroll" enable-flex="true">
+        <view class="style-item {{selectedStyle === item.value ? 'active' : ''}}" wx:for="{{styles}}" wx:key="value" bindtap="selectStyle" data-style="{{item.value}}">
+          <image src="{{item.image}}" mode="aspectFill" class="style-image"></image>
+          <text class="style-name">{{item.name}}</text>
+        </view>
+      </scroll-view>
+    </view>
+
+    <!-- 参数调整 -->
+    <view class="section">
+      <text class="section-title">创作参数</text>
+      <view class="param-item">
+        <text class="param-label">创意度</text>
+        <slider min="0" max="100" value="{{creativity}}" show-value bindchange="onCreativityChange"></slider>
+      </view>
+      <view class="param-item">
+        <text class="param-label">分辨率</text>
+        <radio-group class="resolution-group" bindchange="onResolutionChange">
+          <label class="radio-item">
+            <radio value="512x512" checked="{{resolution === '512x512'}}" class="radio-btn" />
+            <text>512x512</text>
+          </label>
+          <label class="radio-item">
+            <radio value="1024x1024" checked="{{resolution === '1024x1024'}}" class="radio-btn" />
+            <text>1024x1024</text>
+          </label>
+        </radio-group>
+      </view>
+    </view>
+  </view>
+
+  <!-- 图生图模式 -->
+  <view class="create-panel" wx:if="{{createMode === 'img2img'}}">
+    <!-- 图片上传 -->
+    <view class="section">
+      <text class="section-title">上传图片</text>
+      <view class="upload-area" bindtap="chooseImage">
+        <image src="{{uploadedImage}}" mode="aspectFill" class="uploaded-image" wx:if="{{uploadedImage}}"></image>
+        <view class="upload-placeholder" wx:else>
+          <view class="upload-icon">📤</view>
+          <text class="upload-text">点击上传图片</text>
+          <text class="upload-hint">支持JPG、PNG格式，不超过10MB</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 风格转换 -->
+    <view class="section">
+      <text class="section-title">转换风格</text>
+      <scroll-view scroll-x="true" class="style-scroll" enable-flex="true">
+        <view class="style-item {{selectedStyle === item.value ? 'active' : ''}}" wx:for="{{styles}}" wx:key="value" bindtap="selectStyle" data-style="{{item.value}}">
+          <image src="{{item.image}}" mode="aspectFill" class="style-image"></image>
+          <text class="style-name">{{item.name}}</text>
+        </view>
+      </scroll-view>
+    </view>
+
+    <!-- 描述补充 -->
+    <view class="section">
+      <text class="section-title">补充描述（可选）</text>
+      <textarea class="desc-input" placeholder="可以补充描述您想要的效果..." value="{{textPrompt}}" bindinput="onTextInput"></textarea>
+    </view>
+  </view>
+
+  <!-- 生成按钮 -->
+  <view class="generate-section">
+    <button class="btn btn-primary generate-btn" bindtap="generateImage" disabled="{{!canGenerate || generating}}">
+      <loading wx:if="{{generating}}"></loading>
+      <text wx:else>{{generating ? '生成中...' : '生成图片'}}</text>
+    </button>
+    <text class="generate-hint" wx:if="{{!canGenerate}}">
+      {{createMode === 'text2img' ? '请输入创作描述' : '请上传图片'}}
+    </text>
+  </view>
+
+  <!-- 生成结果 -->
+  <view class="result-section" wx:if="{{generatedImage}}">
+    <text class="section-title">生成结果</text>
+    <view class="result-image-container">
+      <image src="{{generatedImage}}" mode="aspectFit" class="result-image"></image>
+    </view>
+    <view class="result-actions">
+      <button class="btn btn-outline" bindtap="saveImage">💾 保存图片</button>
+      <button class="btn btn-secondary" bindtap="publishWork">📤 发布作品</button>
+      <button class="btn btn-outline" bindtap="regenerateImage">🔄 重新生成</button>
+    </view>
+  </view>
+</view>

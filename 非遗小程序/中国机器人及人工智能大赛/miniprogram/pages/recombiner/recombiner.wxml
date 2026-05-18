@@ -1,0 +1,175 @@
+<!-- recombiner.wxml - 文化基因重组器 -->
+<view class="container">
+  <!-- 顶部标题区 -->
+  <view class="header-card">
+    <view class="header-icon">🧬</view>
+    <text class="header-title">文化基因重组器</text>
+    <text class="header-desc">选择两个不同的文化元素，AI将融合它们的基因<br/>创造出前所未有的文化艺术作品</text>
+  </view>
+
+  <!-- 选择区 -->
+  <view class="selection-area">
+    <!-- 元素A -->
+    <view class="select-box {{selectedA ? 'has-selected' : ''}}" bindtap="{{selectedA ? '' : ''}}">
+      <view class="select-label">文化元素 A</view>
+      <view wx:if="{{selectedA}}" class="selected-element">
+        <text class="element-emoji">{{selectedA.icon}}</text>
+        <text class="element-name">{{selectedA.name}}</text>
+        <text class="element-desc">{{selectedA.desc}}</text>
+      </view>
+      <view wx:else class="select-placeholder">
+        <text class="placeholder-icon">❓</text>
+        <text>选择一个文化元素</text>
+      </view>
+    </view>
+
+    <!-- 融合符号 -->
+    <view class="fusion-symbol">
+      <view class="fusion-x" bindtap="swapElements">
+        <text>✕</text>
+      </view>
+    </view>
+
+    <!-- 元素B -->
+    <view class="select-box {{selectedB ? 'has-selected' : ''}}" bindtap="{{selectedB ? '' : ''}}">
+      <view class="select-label">文化元素 B</view>
+      <view wx:if="{{selectedB}}" class="selected-element">
+        <text class="element-emoji">{{selectedB.icon}}</text>
+        <text class="element-name">{{selectedB.name}}</text>
+        <text class="element-desc">{{selectedB.desc}}</text>
+      </view>
+      <view wx:else class="select-placeholder">
+        <text class="placeholder-icon">❓</text>
+        <text>选择一个文化元素</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 元素选择列表 -->
+  <view class="card">
+    <text class="section-title">🎨 可选文化元素</text>
+    <view class="element-grid">
+      <view class="element-card {{selectedA && selectedA.id === item.id ? 'selected-a' : ''}} {{selectedB && selectedB.id === item.id ? 'selected-b' : ''}}" 
+            wx:for="{{elements}}" wx:key="id" 
+            bindtap="selectElement" data-id="{{item.id}}">
+        <view class="element-tag">{{item.category}}</view>
+        <text class="element-icon">{{item.icon}}</text>
+        <text class="element-card-name">{{item.name}}</text>
+        <text class="element-card-desc">{{item.desc}}</text>
+        <view wx:if="{{selectedA && selectedA.id === item.id}}" class="badge badge-a">A</view>
+        <view wx:if="{{selectedB && selectedB.id === item.id}}" class="badge badge-b">B</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 操作区 -->
+  <view class="action-section" wx:if="{{!showResult}}">
+    <text class="select-hint" wx:if="{{!selectedA && !selectedB}}">👆 请从上方选择两个文化元素</text>
+    <text class="select-hint" wx:elif="{{!selectedA || !selectedB}}">👆 请再选择一个文化元素</text>
+
+    <button class="btn btn-primary recombine-btn {{canRecombine ? '' : 'disabled'}}" 
+            bindtap="startRecombine" disabled="{{!canRecombine}}">
+      <text wx:if="{{!recombining}}">🧬 开始基因重组</text>
+      <text wx:else>融合中...</text>
+    </button>
+  </view>
+
+  <!-- 融合过程可视化 -->
+  <view class="fusion-process" wx:if="{{recombining}}">
+    <view class="fusion-card">
+      <text class="fusion-title">🔬 文化基因融合中</text>
+      
+      <!-- 双元素动画 -->
+      <view class="fusion-visual">
+        <view class="fusion-elem left">
+          <text class="fusion-emoji">{{selectedA.icon}}</text>
+          <text class="fusion-name">{{selectedA.name}}</text>
+        </view>
+        <view class="fusion-center">
+          <view class="fusion-particle-container">
+            <view class="particle p1"></view>
+            <view class="particle p2"></view>
+            <view class="particle p3"></view>
+            <view class="particle p4"></view>
+            <view class="particle p5"></view>
+            <view class="particle p6"></view>
+          </view>
+          <view class="fusion-spiral"></view>
+        </view>
+        <view class="fusion-elem right">
+          <text class="fusion-emoji">{{selectedB.icon}}</text>
+          <text class="fusion-name">{{selectedB.name}}</text>
+        </view>
+      </view>
+
+      <!-- 进度条 -->
+      <view class="progress-bar">
+        <view class="progress-fill" style="width: {{fusionProgress}}%"></view>
+      </view>
+      <text class="progress-percent">{{fusionProgress}}%</text>
+      <text class="fusion-phase">{{fusionPhase}}</text>
+
+      <!-- DNA双螺旋装饰 -->
+      <view class="dna-helix">
+        <view class="dna-strand s1"></view>
+        <view class="dna-strand s2"></view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 结果展示 -->
+  <view class="result-section" wx:if="{{showResult}}">
+    <view class="card result-card">
+      <text class="section-title">✨ 融合成果</text>
+      <text class="result-title">{{resultTitle}}</text>
+      
+      <view class="result-image-wrapper">
+        <image src="{{resultImage}}" mode="aspectFit" class="result-image" show-menu-by-longpress="{{true}}"></image>
+        <view class="result-watermark">
+          <text>{{selectedA.icon}}{{selectedB.icon}} AI基因重组</text>
+        </view>
+      </view>
+
+      <text class="result-desc">{{resultDesc}}</text>
+
+      <!-- 基因对比 -->
+      <view class="gene-compare">
+        <view class="gene-item">
+          <text class="gene-label">{{selectedA.icon}} {{selectedA.name}}</text>
+          <view class="gene-bar" style="width: 45%"></view>
+        </view>
+        <view class="gene-item">
+          <text class="gene-label">{{selectedB.icon}} {{selectedB.name}}</text>
+          <view class="gene-bar bar-b" style="width: 45%"></view>
+        </view>
+        <view class="gene-item fusion-gene">
+          <text class="gene-label">🧬 融合基因</text>
+          <view class="gene-bar bar-fusion" style="width: 100%"></view>
+        </view>
+      </view>
+
+      <!-- 操作按钮 -->
+      <view class="result-actions">
+        <button class="btn btn-outline" bindtap="saveImage">💾 保存图片</button>
+        <button class="btn btn-outline" bindtap="regenerate">🔄 重新生成</button>
+        <button class="btn btn-primary" open-type="share">📤 分享作品</button>
+      </view>
+
+      <button class="btn btn-secondary full-width-btn" bindtap="newRecombine">🔁 开始新的重组</button>
+    </view>
+  </view>
+
+  <!-- 历史记录 -->
+  <view class="card" wx:if="{{historyList.length > 0 && !recombining}}">
+    <text class="section-title">📜 融合历史</text>
+    <scroll-view scroll-x="true" class="history-scroll" enable-flex="true">
+      <view class="history-item" wx:for="{{historyList}}" wx:key="id" bindtap="onHistoryTap" data-item="{{item}}">
+        <image src="{{item.image}}" mode="aspectFill" class="history-image"></image>
+        <view class="history-info">
+          <text class="history-title">{{item.elemA.icon}}{{item.elemB.icon}}</text>
+          <text class="history-time">{{item.time}}</text>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+</view>

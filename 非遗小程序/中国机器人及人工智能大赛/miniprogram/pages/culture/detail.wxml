@@ -1,0 +1,56 @@
+<!-- culture/detail.wxml - 文化资源详情 -->
+<view class="container">
+  <!-- 资源图片 -->
+  <image src="{{resource.image}}" mode="aspectFit" class="resource-image"></image>
+  
+  <!-- 资源信息 -->
+  <view class="resource-info">
+    <text class="resource-title">{{resource.title}}</text>
+    <view class="resource-meta">
+      <text class="resource-type">{{resource.type}}</text>
+      <text class="resource-views">👁️ {{resource.views}}</text>
+    </view>
+    
+    <!-- 资源描述 -->
+    <view class="section">
+      <text class="section-title">资源描述</text>
+      <text class="resource-desc">{{resource.description}}</text>
+    </view>
+    
+    <!-- 文化背景 -->
+    <view class="section">
+      <text class="section-title">文化背景</text>
+      <text class="resource-background">{{resource.background}}</text>
+    </view>
+    
+    <!-- 历史渊源 -->
+    <view class="section">
+      <text class="section-title">历史渊源</text>
+      <text class="resource-history">{{resource.history}}</text>
+    </view>
+    
+    <!-- 艺术特点 -->
+    <view class="section">
+      <text class="section-title">艺术特点</text>
+      <text class="resource-features">{{resource.features}}</text>
+    </view>
+    
+    <!-- 当代价值 -->
+    <view class="section">
+      <text class="section-title">当代价值</text>
+      <text class="resource-value">{{resource.value}}</text>
+    </view>
+    
+    <!-- 操作按钮 -->
+    <view class="action-buttons">
+      <button class="btn btn-primary" bindtap="useResource">使用该资源</button>
+      <button class="btn btn-secondary" bindtap="shareResource">分享</button>
+    </view>
+  </view>
+  
+  <!-- 加载动画 -->
+  <view class="loading" wx:if="{{loading}}">
+    <loading></loading>
+    <text class="loading-text">加载中...</text>
+  </view>
+</view>

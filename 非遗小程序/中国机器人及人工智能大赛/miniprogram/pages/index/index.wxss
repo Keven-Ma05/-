@@ -1,0 +1,286 @@
+/* index.wxss - 首页样式 */
+
+/* 轮播图 */
+.banner {
+  width: 100%;
+  height: 320rpx;
+  border-radius: 16rpx;
+  overflow: hidden;
+  margin-bottom: 20rpx;
+}
+
+.banner .banner-image {
+  width: 100%;
+  height: 100%;
+}
+
+/* 功能入口 */
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16rpx;
+}
+
+.function-item {
+  width: calc(50% - 8rpx);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 32rpx 0;
+  background-color: #FFFFFF;
+  border-radius: 16rpx;
+  box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease;
+}
+
+.function-item:active {
+  transform: scale(0.95);
+}
+
+.function-icon {
+  font-size: 80rpx;
+  margin-bottom: 16rpx;
+}
+
+.function-text {
+  font-size: 28rpx;
+  color: #333333; /* 深灰色 - 主文本色 */
+  font-weight: 500;
+}
+
+/* 基因重组高亮入口 */
+.function-highlight {
+  background: linear-gradient(135deg, #FFF8F0 0%, #FFF0F3 100%);
+  border: 3rpx solid #C41E3A;
+  position: relative;
+  overflow: hidden;
+}
+
+.function-highlight::after {
+  content: 'NEW';
+  position: absolute;
+  top: 8rpx;
+  right: 8rpx;
+  background: linear-gradient(135deg, #C41E3A, #E8505B);
+  color: #FFF;
+  font-size: 18rpx;
+  padding: 4rpx 10rpx;
+  border-radius: 20rpx;
+  font-weight: 600;
+}
+
+.function-highlight .function-text {
+  color: #8B4513;
+  font-weight: 600;
+}
+
+/* 热门创作 */
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+
+.more {
+  font-size: 24rpx;
+  color: #8B4513; /* 棕色 - 代表传统文化 */
+  text-decoration: none;
+  display: inline-block;
+  padding: 8rpx;
+  touch-action: manipulation;
+}
+
+.hot-works {
+  display: flex;
+  white-space: nowrap;
+  padding-bottom: 10rpx;
+}
+
+.work-item {
+  width: 280rpx;
+  margin-right: 20rpx;
+  background-color: #FFFFFF;
+  border-radius: 12rpx;
+  overflow: hidden;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.08);
+  display: inline-block;
+  vertical-align: top;
+}
+
+.work-image {
+  width: 100%;
+  height: 280rpx;
+}
+
+.work-info {
+  padding: 16rpx;
+}
+
+.work-title {
+  font-size: 26rpx;
+  font-weight: 500;
+  color: var(--text-color);
+  margin-bottom: 8rpx;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.work-author {
+  font-size: 22rpx;
+  color: var(--light-text);
+  margin-bottom: 12rpx;
+  display: block;
+}
+
+.work-stats {
+  display: flex;
+  justify-content: space-between;
+  font-size: 22rpx;
+  color: var(--light-text);
+}
+
+.stat-item {
+  display: flex;
+  align-items: center;
+}
+
+/* 文化推荐 */
+.culture-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+}
+
+.culture-item {
+  display: flex;
+  background-color: #FFFFFF;
+  border-radius: 12rpx;
+  overflow: hidden;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease;
+}
+
+.culture-item:active {
+  transform: scale(0.98);
+}
+
+.culture-image {
+  width: 200rpx;
+  height: 140rpx;
+  flex-shrink: 0;
+}
+
+.culture-content {
+  padding: 16rpx;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.culture-title {
+  font-size: 28rpx;
+  font-weight: 500;
+  color: var(--text-color);
+  margin-bottom: 8rpx;
+}
+
+.culture-desc {
+  font-size: 22rpx;
+  color: var(--light-text);
+  margin-bottom: 12rpx;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.culture-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8rpx;
+}
+
+.tag {
+  font-size: 20rpx;
+  padding: 4rpx 12rpx;
+  background-color: rgba(139, 69, 19, 0.1);
+  color: var(--primary-color);
+  border-radius: 12rpx;
+}
+
+/* 创作挑战 */
+.challenge-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+
+.challenge-icon {
+  font-size: 60rpx;
+  margin-right: 20rpx;
+}
+
+.challenge-title {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: var(--primary-color);
+  display: block;
+}
+
+.challenge-subtitle {
+  font-size: 24rpx;
+  color: var(--light-text);
+  display: block;
+}
+
+.challenge-details {
+  padding: 20rpx;
+  background-color: rgba(210, 180, 140, 0.1);
+  border-radius: 12rpx;
+}
+
+.challenge-desc {
+  font-size: 24rpx;
+  color: var(--text-color);
+  margin-bottom: 20rpx;
+  display: block;
+}
+
+.challenge-stats {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20rpx;
+  font-size: 22rpx;
+  color: var(--light-text);
+}
+
+.join-btn {
+  display: block;
+  width: 100%;
+  margin-top: 10rpx;
+}
+
+/* 响应式调整 */
+@media (max-width: 375px) {
+  .banner {
+    height: 280rpx;
+  }
+  
+  .work-item {
+    width: 240rpx;
+  }
+  
+  .work-image {
+    height: 240rpx;
+  }
+  
+  .culture-image {
+    width: 160rpx;
+    height: 120rpx;
+  }
+}

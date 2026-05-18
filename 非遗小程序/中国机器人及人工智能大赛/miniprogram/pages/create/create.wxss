@@ -1,0 +1,281 @@
+/* create.wxss - AI创作页面样式 */
+
+/* 创作模式切换 */
+.mode-tabs {
+  display: flex;
+  background-color: #FFFFFF;
+  border-radius: 12rpx;
+  margin-bottom: 20rpx;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+}
+
+.tab-item {
+  flex: 1;
+  padding: 24rpx;
+  text-align: center;
+  font-size: 28rpx;
+  font-weight: 500;
+  color: var(--text-color);
+  transition: all 0.3s ease;
+}
+
+.tab-item.active {
+  background-color: var(--primary-color);
+  color: #FFFFFF;
+}
+
+/* 创作面板 */
+.create-panel {
+  background-color: #FFFFFF;
+  border-radius: 16rpx;
+  padding: 24rpx;
+  margin-bottom: 20rpx;
+  box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.08);
+}
+
+/* 章节样式 */
+.section {
+  margin-bottom: 32rpx;
+}
+
+.section:last-child {
+  margin-bottom: 0;
+}
+
+.section-title {
+  display: block;
+  font-size: 32rpx;
+  font-weight: 500;
+  color: var(--primary-color);
+  margin-bottom: 20rpx;
+}
+
+/* 描述输入 */
+.desc-input {
+  width: 100%;
+  min-height: 160rpx;
+  padding: 20rpx;
+  border: 2rpx solid var(--border-color);
+  border-radius: 12rpx;
+  font-size: 28rpx;
+  color: var(--text-color);
+  line-height: 1.6;
+  resize: none;
+}
+
+.desc-input:focus {
+  border-color: var(--primary-color);
+  outline: none;
+}
+
+/* 风格选择 */
+.style-scroll {
+  display: flex;
+  white-space: nowrap;
+  padding-bottom: 10rpx;
+}
+
+.style-item {
+  width: 160rpx;
+  margin-right: 20rpx;
+  display: inline-block;
+  vertical-align: top;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.style-item.active {
+  transform: scale(1.05);
+}
+
+.style-image {
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: 12rpx;
+  margin-bottom: 12rpx;
+  border: 3rpx solid transparent;
+}
+
+.style-item.active .style-image {
+  border-color: #8B4513; /* 棕色 - 代表传统文化 */
+}
+
+.style-name {
+  font-size: 24rpx;
+  color: #333333; /* 深灰色 - 主文本色 */
+  display: block;
+}
+
+/* 参数调整 */
+.param-item {
+  margin-bottom: 24rpx;
+}
+
+.param-item:last-child {
+  margin-bottom: 0;
+}
+
+.param-label {
+  display: block;
+  font-size: 28rpx;
+  color: #333333; /* 深灰色 - 主文本色 */
+  margin-bottom: 12rpx;
+}
+
+.slider {
+  width: 100%;
+}
+
+.resolution-group {
+  display: flex;
+  gap: 40rpx;
+}
+
+.radio-item {
+  display: flex;
+  align-items: center;
+  font-size: 28rpx;
+  color: #333333; /* 深灰色 - 主文本色 */
+}
+
+.radio-item .radio-btn {
+  margin-right: 12rpx;
+}
+
+/* 图片上传 */
+.upload-area {
+  width: 100%;
+  height: 300rpx;
+  border: 2rpx dashed #E0E0E0; /* 浅灰色 - 边框色 */
+  border-radius: 12rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.02);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.upload-area:active {
+  border-color: #8B4513; /* 棕色 - 代表传统文化 */
+  background-color: rgba(139, 69, 19, 0.05);
+}
+
+.uploaded-image {
+  width: 100%;
+  height: 100%;
+  border-radius: 12rpx;
+}
+
+.upload-placeholder {
+  text-align: center;
+}
+
+.upload-icon {
+  font-size: 80rpx;
+  margin-bottom: 16rpx;
+}
+
+.upload-text {
+  display: block;
+  font-size: 28rpx;
+  color: #333333; /* 深灰色 - 主文本色 */
+  margin-bottom: 8rpx;
+}
+
+.upload-hint {
+  display: block;
+  font-size: 22rpx;
+  color: #7A7A7A; /* 浅灰色 - 辅助文本色 */
+}
+
+/* 生成按钮 */
+.generate-section {
+  margin-bottom: 20rpx;
+}
+
+.generate-btn {
+  width: 100%;
+  padding: 24rpx;
+  font-size: 32rpx;
+  border-radius: 12rpx;
+}
+
+.generate-hint {
+  display: block;
+  text-align: center;
+  font-size: 24rpx;
+  color: #F44336; /* 红色 - 错误色 */
+  margin-top: 12rpx;
+}
+
+/* 生成结果 */
+.result-section {
+  background-color: #FFFFFF;
+  border-radius: 16rpx;
+  padding: 24rpx;
+  box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.08);
+}
+
+.result-image-container {
+  width: 100%;
+  height: 400rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.02);
+  border-radius: 12rpx;
+  margin-bottom: 24rpx;
+  overflow: hidden;
+}
+
+.result-image {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.result-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 16rpx;
+}
+
+.result-actions .btn {
+  flex: 1;
+  padding: 20rpx;
+  font-size: 28rpx;
+}
+
+/* 响应式调整 */
+@media (max-width: 375px) {
+  .create-panel {
+    padding: 16rpx;
+  }
+  
+  .section-title {
+    font-size: 28rpx;
+  }
+  
+  .desc-input {
+    font-size: 26rpx;
+    min-height: 140rpx;
+  }
+  
+  .style-item {
+    width: 140rpx;
+  }
+  
+  .style-image {
+    width: 140rpx;
+    height: 140rpx;
+  }
+  
+  .result-actions {
+    flex-direction: column;
+  }
+  
+  .result-image-container {
+    height: 300rpx;
+  }
+}

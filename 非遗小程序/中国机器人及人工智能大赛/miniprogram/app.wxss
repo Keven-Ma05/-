@@ -1,0 +1,176 @@
+/* app.wxss - 全局样式 */
+
+/* 全局字体设置 */
+page {
+  --primary-color: #8B4513;
+  --text-color: #333333;
+  --light-text: #666666;
+  --border-color: #EEEEEE;
+  --error-color: #FF4444;
+  font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  background-color: #F5F5DC;
+  color: #333333;
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* 基础元素样式重置 */
+view, text, image, button, input, textarea, scroll-view, swiper, swiper-item {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* 通用容器 */
+.container {
+  padding: 20rpx;
+  min-height: 100vh;
+}
+
+/* 卡片样式 */
+.card {
+  background-color: #FFFFFF;
+  border-radius: 16rpx;
+  padding: 24rpx;
+  margin-bottom: 20rpx;
+  box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.08);
+}
+
+/* 标题样式 */
+.title {
+  font-size: 36rpx;
+  font-weight: 600;
+  color: #8B4513;
+  margin-bottom: 20rpx;
+}
+
+.subtitle {
+  font-size: 28rpx;
+  font-weight: 500;
+  color: #333333;
+  margin-bottom: 16rpx;
+}
+
+/* 按钮样式 */
+.btn {
+  display: inline-block;
+  padding: 16rpx 32rpx;
+  border-radius: 8rpx;
+  font-size: 28rpx;
+  font-weight: 500;
+  text-align: center;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background-color: #8B4513;
+  color: #FFFFFF;
+}
+
+.btn-secondary {
+  background-color: #D2B48C;
+  color: #FFFFFF;
+}
+
+.btn-outline {
+  background-color: transparent;
+  border: 2rpx solid #8B4513;
+  color: #8B4513;
+}
+
+/* 输入框样式 */
+.input {
+  width: 100%;
+  padding: 16rpx;
+  border: 2rpx solid #E0E0E0;
+  border-radius: 8rpx;
+  font-size: 28rpx;
+  margin-bottom: 20rpx;
+}
+
+.input:focus {
+  border-color: #8B4513;
+  outline: none;
+}
+
+/* 列表样式 */
+.list {
+  margin-bottom: 20rpx;
+}
+
+.list-item {
+  display: flex;
+  align-items: center;
+  padding: 20rpx 0;
+  border-bottom: 1rpx solid #E0E0E0;
+}
+
+.list-item:last-child {
+  border-bottom: none;
+}
+
+/* 加载动画 */
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40rpx;
+}
+
+.loading-text {
+  font-size: 28rpx;
+  color: #7A7A7A;
+  margin-left: 12rpx;
+}
+
+/* 空状态 */
+.empty {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 80rpx 0;
+  color: #7A7A7A;
+}
+
+.empty-icon {
+  font-size: 80rpx;
+  margin-bottom: 20rpx;
+}
+
+.empty-text {
+  font-size: 28rpx;
+}
+
+/* 网格布局 */
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.grid-item {
+  width: 48%;
+  margin-bottom: 20rpx;
+}
+
+/* 传统文化风格装饰 */
+.chinese-border {
+  border: 4rpx solid #8B4513;
+  border-radius: 12rpx;
+  position: relative;
+}
+
+.chinese-border::before {
+  content: '';
+  position: absolute;
+  top: -4rpx;
+  left: -4rpx;
+  right: -4rpx;
+  bottom: -4rpx;
+  border: 4rpx solid #D2B48C;
+  border-radius: 16rpx;
+  pointer-events: none;
+}

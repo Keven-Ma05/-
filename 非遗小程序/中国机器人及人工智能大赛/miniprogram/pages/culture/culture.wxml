@@ -1,0 +1,45 @@
+<!-- culture.wxml - 文化资源库 -->
+<view class="container">
+  <!-- 搜索栏 -->
+  <view class="search-bar">
+    <input class="search-input" placeholder="搜索传统文化资源" bindinput="onSearchInput" value="{{searchKeyword}}"></input>
+    <view class="search-btn" bindtap="onSearch">🔍</view>
+  </view>
+
+  <!-- 分类导航 -->
+  <scroll-view scroll-x="true" class="category-nav" enable-flex="true">
+    <view class="category-item {{currentCategory === '' ? 'active' : ''}}" bindtap="onCategoryChange" data-category="">
+      全部
+    </view>
+    <view class="category-item {{currentCategory === item.id ? 'active' : ''}}" wx:for="{{categories}}" wx:key="id" bindtap="onCategoryChange" data-category="{{item.id}}">
+      {{item.icon}} {{item.name}}
+    </view>
+  </scroll-view>
+
+  <!-- 资源列表 -->
+  <view class="resource-list">
+    <view class="resource-item" wx:for="{{resources}}" wx:key="id" bindtap="onResourceTap" data-id="{{item.id}}">
+      <image src="{{item.image}}" mode="aspectFill" class="resource-image"></image>
+      <view class="resource-content">
+        <text class="resource-title">{{item.title}}</text>
+        <text class="resource-desc">{{item.description}}</text>
+        <view class="resource-meta">
+          <text class="resource-type">{{item.type}}</text>
+          <text class="resource-views">👁️ {{item.views}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 空状态 -->
+  <view class="empty" wx:if="{{resources.length === 0 && !loading}}">
+    <view class="empty-icon">📚</view>
+    <text class="empty-text">暂无相关资源</text>
+  </view>
+
+  <!-- 加载动画 -->
+  <view class="loading" wx:if="{{loading}}">
+    <loading></loading>
+    <text class="loading-text">加载中...</text>
+  </view>
+</view>
